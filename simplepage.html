@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simplepage</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .navbar{
+            background-color: #FDE3D9;
+        }
+        .navbar h3{
+            display: inline;
+        }
+        .imagecontainer{
+            display: flex;
+        }
+        .imagecontainer > div {
+            width: 50%;
+        }
+        img{
+            width: 100%;
+            height: 100vh;
+        }
+        #popupdiv{
+            display: none;
+            background-color: black;
+            padding: 2px;
+            color: whitesmoke;
+            position: absolute;
+            left: 40%;
+            top: 50%;
+        }
+        .image1 > button {
+            position: absolute;
+            top: 50%;
+            left: 2%; 
+        }
+        .image2 > button{
+            position: absolute;
+            top: 50%;
+            right: 2%; 
+        }
+        #cancel{
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <h3>Simple Page whith Slider</h3>
+            <button onclick="popupFun()" style="position: fixed; right: 20px;">Contact</button>
+        </div>
+        <div class="imagecontainer">
+            <div class="image1">
+                <img id="image1"src="1.png" alt="image1">
+                <button onclick="slider()"><</button>
+            </div>
+            <div class="image2">
+                <img id="image2" src="2.png" alt="image2">
+                <button onclick="slider()">></button>
+            </div>
+        </div>
+        <div id="popupdiv">
+            <div class="contact">
+                <h3>Contact Us</h3>
+                <form action="/">
+                    <label for="name">Name
+                    <input type="text" id="name"></label><br>
+                    <label for="email">Email <input type="email" id="email"></label><br>
+                    <button type="submit">submit</button>
+                </form>
+                <button id="cancel" onclick="popupFun()">X</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function popupFun(){
+            const popupdiv = document.getElementById("popupdiv");
+            if(popupdiv.style.display == 'none'){
+                popupdiv.style.display = 'block';
+            }
+            else {
+                popupdiv.style.display = 'none';
+            }
+        }
+        function slider(){
+            const image1 = document.getElementById("image1");
+            const image2 = document.getElementById("image2");
+            const temp = image2.getAttribute("src");
+            console.log(temp)
+            image2.setAttribute("src", image1.getAttribute("src"));
+            image1.setAttribute("src", temp);
+        }
+    </script>
+</body>
+</html>
